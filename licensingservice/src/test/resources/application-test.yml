@@ -1,9 +1,7 @@
-example.property: "I AM A DEV PROPERTY OVERRIDE"
+example.property: "I AM A TEST PROPERTY OVERRIDE"
 
 server:
   port: 9091
-  security:
-    enable: false
 
 spring:
   jpa:

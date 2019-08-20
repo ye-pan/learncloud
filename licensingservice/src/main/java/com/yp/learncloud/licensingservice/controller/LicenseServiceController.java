@@ -1,9 +1,12 @@
 package com.yp.learncloud.licensingservice.controller;
 
+import com.yp.learncloud.licensingservice.config.ServiceConfig;
 import com.yp.learncloud.licensingservice.model.License;
 import com.yp.learncloud.licensingservice.service.LicenseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/organizations/{organizationId}/licenses")
@@ -11,16 +14,21 @@ public class LicenseServiceController {
 
     private LicenseService licenseService;
 
-    public LicenseServiceController(LicenseService licenseService) {
+    private ServiceConfig serviceConfig;
+
+    public LicenseServiceController(LicenseService licenseService, ServiceConfig serviceConfig) {
         this.licenseService = licenseService;
+        this.serviceConfig = serviceConfig;
     }
 
-    @RequestMapping(value="/{licenseId}",method = RequestMethod.GET)
-    public License getLicenses(@PathVariable("organizationId") String organizationId,
-                               @PathVariable("licenseId") String licenseId) {
+    @GetMapping("/")
+    public List<License> getLicenses(@PathVariable("organizationId") String organizationId) {
+        return licenseService.getLicenseByOrg(organizationId);
+    }
 
-        //return licenseService.getLicense(licenseId);
-        return new License(licenseId, organizationId, "Teleco", "Seat");
+    @GetMapping("/{licenseId}")
+    public License getLicense(@PathVariable("licenseId") String licenseId) {
+        return licenseService.getLicense(licenseId);
     }
 
     @RequestMapping(value="{licenseId}",method = RequestMethod.PUT)
@@ -28,9 +36,9 @@ public class LicenseServiceController {
         return "This is the put";
     }
 
-    @RequestMapping(value="{licenseId}",method = RequestMethod.POST)
-    public String saveLicenses( @PathVariable("licenseId") String licenseId) {
-        return "This is the post";
+    @PostMapping("/")
+    public void saveLicenses(@RequestBody License license) {
+        licenseService.saveLicense(license);
     }
 
     @RequestMapping(value="{licenseId}",method = RequestMethod.DELETE)
