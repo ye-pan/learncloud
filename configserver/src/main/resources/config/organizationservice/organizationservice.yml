@@ -1,1 +1,23 @@
-example.organization.property: "I AM THE DEFAULT ORGANIZATION SERVICE"
+server:
+  port: 9093
+
+spring:
+  jpa:
+    database: hsql
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:hsqldb:file:F:\data\learncloud\organization_db
+    username: SA
+    password:
+
+eureka:
+  instance:
+    hostname: 192.168.1.7
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9092/eureka

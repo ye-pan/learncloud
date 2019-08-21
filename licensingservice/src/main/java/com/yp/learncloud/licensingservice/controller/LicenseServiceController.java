@@ -27,8 +27,8 @@ public class LicenseServiceController {
     }
 
     @GetMapping("/{licenseId}")
-    public License getLicense(@PathVariable("licenseId") String licenseId) {
-        return licenseService.getLicense(licenseId);
+    public License getLicense(@PathVariable("organizationId") String organizationId, @PathVariable("licenseId") String licenseId) {
+        return licenseService.getLicense(organizationId, licenseId);
     }
 
     @RequestMapping(value="{licenseId}",method = RequestMethod.PUT)
@@ -45,5 +45,10 @@ public class LicenseServiceController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteLicenses( @PathVariable("licenseId") String licenseId) {
         return "This is the Delete";
+    }
+
+    @GetMapping("/list")
+    public List<License> list() {
+        return licenseService.findAll();
     }
 }

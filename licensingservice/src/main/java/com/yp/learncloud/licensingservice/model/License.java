@@ -1,11 +1,11 @@
 package com.yp.learncloud.licensingservice.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Data
@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "licenses")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class License {
     @Id
     @GenericGenerator(name = "idGenerator", strategy = "uuid")
@@ -37,4 +38,7 @@ public class License {
 
     @Column(name = "comment")
     private String comment;
+
+    @Transient
+    private Organization organization;
 }

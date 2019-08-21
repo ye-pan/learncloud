@@ -8,8 +8,20 @@ server:
 spring:
   jpa:
     database: hsql
-    generate-ddl=true: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
   datasource:
-    url: jdbc:hsqldb:mem:licensingservice_db
+    url: jdbc:hsqldb:file:F:\data\learncloud\licensingservice_db
     username: SA
     password:
+
+eureka:
+  instance:
+    hostname: 192.168.1.7
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:9092/eureka
