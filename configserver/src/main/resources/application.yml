@@ -37,6 +37,6 @@ spring:
      config:
        server:
            native:
-             search-locations: classpath:config/,classpath:config/licensingservice,classpath:config/organizationservice
+             search-locations: classpath:config/
   application:
     name: configserver
