@@ -10,6 +10,7 @@
         <module>organizationservice</module>
         <module>zuulserver</module>
         <module>commons-lib</module>
+        <module>specialrouteservice</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
