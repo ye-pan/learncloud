@@ -1,16 +1,5 @@
 server:
-  port: 9093
-
-spring:
-  jpa:
-    database: hsql
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-  datasource:
-    url: jdbc:hsqldb:file:F:\data\learncloud\organization_db
-    username: SA
-    password:
+  port: 9094
 
 eureka:
   instance:
@@ -26,4 +15,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh
+        include: routes,refresh

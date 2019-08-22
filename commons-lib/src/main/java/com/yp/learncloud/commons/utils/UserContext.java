@@ -1,4 +1,4 @@
-package com.yp.learncloud.licensingservice.utils;
+package com.yp.learncloud.commons.utils;
 
 import lombok.Data;
 

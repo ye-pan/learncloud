@@ -2,6 +2,7 @@ package com.yp.learncloud.licensingservice.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.yp.learncloud.commons.utils.UserContextHolder;
 import com.yp.learncloud.licensingservice.clients.ClientType;
 import com.yp.learncloud.licensingservice.clients.OrganizationDisconveryClient;
 import com.yp.learncloud.licensingservice.clients.OrganizationFeignClient;
@@ -10,7 +11,6 @@ import com.yp.learncloud.licensingservice.config.ServiceConfig;
 import com.yp.learncloud.licensingservice.model.License;
 import com.yp.learncloud.licensingservice.model.Organization;
 import com.yp.learncloud.licensingservice.repository.LicenseRepository;
-import com.yp.learncloud.licensingservice.utils.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;

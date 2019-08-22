@@ -1,7 +1,7 @@
 package com.yp.learncloud.licensingservice.hystrix;
 
-import com.yp.learncloud.licensingservice.utils.UserContext;
-import com.yp.learncloud.licensingservice.utils.UserContextHolder;
+import com.yp.learncloud.commons.utils.UserContext;
+import com.yp.learncloud.commons.utils.UserContextHolder;
 import java.util.concurrent.Callable;
 
 public class DelegatingUserContextCallable<T> implements Callable<T> {
