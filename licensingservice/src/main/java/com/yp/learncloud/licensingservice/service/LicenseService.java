@@ -3,10 +3,7 @@ package com.yp.learncloud.licensingservice.service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.yp.learncloud.commons.utils.UserContextHolder;
-import com.yp.learncloud.licensingservice.clients.ClientType;
-import com.yp.learncloud.licensingservice.clients.OrganizationDisconveryClient;
-import com.yp.learncloud.licensingservice.clients.OrganizationFeignClient;
-import com.yp.learncloud.licensingservice.clients.OrganizationRibbonClient;
+import com.yp.learncloud.licensingservice.clients.*;
 import com.yp.learncloud.licensingservice.config.ServiceConfig;
 import com.yp.learncloud.licensingservice.model.License;
 import com.yp.learncloud.licensingservice.model.Organization;
@@ -31,15 +28,19 @@ public class LicenseService {
 
     private OrganizationFeignClient organizationFeignClient;
 
+    private OrganizationOauth2Client organizationOauth2Client;
+
     public LicenseService(LicenseRepository licenseRepository, ServiceConfig serviceConfig,
                           OrganizationDisconveryClient organizationDisconveryClient,
                           OrganizationRibbonClient organizationRibbonClient,
-                          OrganizationFeignClient organizationFeignClient) {
+                          OrganizationFeignClient organizationFeignClient,
+                          OrganizationOauth2Client organizationOauth2Client) {
         this.licenseRepository = licenseRepository;
         this.serviceConfig = serviceConfig;
         this.organizationDisconveryClient = organizationDisconveryClient;
         this.organizationRibbonClient = organizationRibbonClient;
         this.organizationFeignClient = organizationFeignClient;
+        this.organizationOauth2Client = organizationOauth2Client;
     }
 
     private Organization retrieveOrgInfo(String organizationId, ClientType clientType) {
@@ -50,6 +51,8 @@ public class LicenseService {
                 return organizationRibbonClient.getOrganization(organizationId);
             case FEIGN:
                 return organizationFeignClient.getOrganization(organizationId);
+            case OAUTH2:
+                return organizationOauth2Client.getOrganization(organizationId);
             default:
                 throw new UnsupportedOperationException();
         }
@@ -58,7 +61,7 @@ public class LicenseService {
     public License getLicense(String orgainzationId, String id) {
         License license = licenseRepository.getOne(id);
         license.setComment(serviceConfig.getExampleProperty());
-        Organization organization = retrieveOrgInfo(orgainzationId, ClientType.FEIGN);
+        Organization organization = retrieveOrgInfo(orgainzationId, ClientType.OAUTH2);
         license.setOrganization(organization);
         return license;
     }
