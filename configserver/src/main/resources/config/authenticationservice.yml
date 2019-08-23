@@ -1,5 +1,5 @@
 server:
-  port: 9093
+  port: 9096
 
 spring:
   jpa:
@@ -8,7 +8,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:hsqldb:file:F:\data\learncloud\organization_db
+    url: jdbc:hsqldb:file:F:\data\learncloud\authenticationservice_db
     username: SA
     password:
 
@@ -19,7 +19,7 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    service-url:
+    serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:9092/eureka
 
 management:
@@ -27,8 +27,3 @@ management:
     web:
       exposure:
         include: refresh
-
-security:
-  oauth2:
-    resource:
-      user-info-uri: http://192.168.1.7:9094/authenticationservice/user

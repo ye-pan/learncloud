@@ -11,6 +11,9 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:9092/eureka
 
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie  # 设置该值用于传播请求头的参数
+
 management:
   endpoints:
     web:

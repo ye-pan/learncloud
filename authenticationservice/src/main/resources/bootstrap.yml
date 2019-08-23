@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: authenticationservice
+  cloud:
+    config:
+      uri: http://192.168.1.7:9090
+  profiles:
+    active: default

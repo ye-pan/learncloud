@@ -11,6 +11,7 @@
         <module>zuulserver</module>
         <module>commons-lib</module>
         <module>specialrouteservice</module>
+        <module>authenticationservice</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
