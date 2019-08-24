@@ -17,8 +17,7 @@ public class OrganizationController {
 
     @GetMapping("/{organizationId}")
     public Organization get(@PathVariable("organizationId") String id) {
-        Organization organization = organizationService.get(id);
-        return organization;
+        return organizationService.get(id);
     }
 
     @PutMapping("/")

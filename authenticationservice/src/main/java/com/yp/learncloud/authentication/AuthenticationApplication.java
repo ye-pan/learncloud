@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableAuthorizationServer
 public class AuthenticationApplication {
     public static void main(String[] args) {
+        //TODO-yepan 还有个JWT 认证服务需要实现
         SpringApplication.run(AuthenticationApplication.class, args);
     }
 }

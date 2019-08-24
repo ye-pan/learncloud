@@ -1,7 +1,7 @@
 example.property: "I AM A DEV PROPERTY OVERRIDE"
 
 server:
-  port: 9091
+  port: 9191
   security:
     enable: false
 
@@ -15,6 +15,16 @@ spring:
     url: jdbc:hsqldb:file:F:\data\learncloud\licensingservice_db
     username: SA
     password:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.1.7
+      bindings:
+        inboundOrgChanges:
+          contentType: application/json
+          destination: orgChangeTopic
+          group: licensingGroup
 
 eureka:
   instance:
@@ -24,7 +34,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:9092/eureka
+      defaultZone: http://${eureka.instance.hostname}:9192/eureka
 
 management:
   endpoints:
@@ -35,4 +45,4 @@ management:
 security:
   oauth2:
     resource:
-      user-info-uri: http://192.168.1.7:9094/authenticationservice/user
+      user-info-uri: http://192.168.1.7:9194/authenticationservice/user

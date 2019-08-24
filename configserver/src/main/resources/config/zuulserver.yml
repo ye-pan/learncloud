@@ -1,5 +1,5 @@
 server:
-  port: 9094
+  port: 9194
 
 eureka:
   instance:
@@ -9,7 +9,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:9092/eureka
+      defaultZone: http://${eureka.instance.hostname}:9192/eureka
 
 zuul:
   sensitiveHeaders: Cookie,Set-Cookie  # 设置该值用于传播请求头的参数

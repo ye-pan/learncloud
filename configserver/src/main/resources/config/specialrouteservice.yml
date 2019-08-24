@@ -1,5 +1,5 @@
 server:
-  port: 9095
+  port: 9195
 
 spring:
   jpa:
@@ -20,7 +20,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:9092/eureka
+      defaultZone: http://${eureka.instance.hostname}:9192/eureka
 
 management:
   endpoints:
