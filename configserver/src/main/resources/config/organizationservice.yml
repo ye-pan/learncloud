@@ -1,5 +1,5 @@
 server:
-  port: 9193
+  port: ${service.organizationservice.port}
 
 spring:
   jpa:
@@ -8,28 +8,35 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:hsqldb:file:F:\data\learncloud\organization_db
+    url: ${service.hsqldb.path}\organization_db
     username: SA
     password:
   cloud:
     stream:
       kafka:
         binder:
-          brokers: 192.168.1.7
+          brokers: ${service.kafka.brokers}
       bindings:
         output:
           contentType: application/json
           destination: orgChangeTopic
+    sleuth:
+      web:
+        client:
+          enabled: true
+      sampler:
+        probability: 1.0
+    zipkin:
+      base-url: ${service.zipkinserver.uri}
 
 eureka:
   instance:
-    hostname: 192.168.1.7
     prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:9192/eureka
+      defaultZone: ${service.eurekaserver.uri}
 
 management:
   endpoints:
@@ -40,4 +47,4 @@ management:
 security:
   oauth2:
     resource:
-      user-info-uri: http://192.168.1.7:9194/authenticationservice/user
+      user-info-uri: ${service.oauth2.userInfoUri}

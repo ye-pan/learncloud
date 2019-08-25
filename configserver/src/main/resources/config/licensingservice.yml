@@ -1,7 +1,7 @@
 example.property: "I AM A DEV PROPERTY OVERRIDE"
 
 server:
-  port: 9191
+  port: ${service.licensingservice.port}
   security:
     enable: false
 
@@ -12,29 +12,36 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:hsqldb:file:F:\data\learncloud\licensingservice_db
+    url: ${service.hsqldb.path}\licensingservice_db
     username: SA
     password:
   cloud:
     stream:
       kafka:
         binder:
-          brokers: 192.168.1.7
+          brokers: ${service.kafka.brokers}
       bindings:
         inboundOrgChanges:
           contentType: application/json
           destination: orgChangeTopic
           group: licensingGroup
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: ${service.zipkinserver.uri}
 
 eureka:
   instance:
-    hostname: 192.168.1.7
     prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:9192/eureka
+      defaultZone: ${service.eurekaserver.uri}
 
 management:
   endpoints:
@@ -45,4 +52,4 @@ management:
 security:
   oauth2:
     resource:
-      user-info-uri: http://192.168.1.7:9194/authenticationservice/user
+      user-info-uri: ${service.oauth2.userInfoUri}

@@ -1,0 +1,37 @@
+service:
+  configserver:
+    hostname: 192.168.1.7
+    port: 9190
+    uri: http://${service.configserver.hostname}:${service.configserver.port}
+  authenticationservice:
+    hostname: 192.168.1.7
+    port: 9196
+    uri: http://${service.authenticationservice.hostname}:${service.authenticationservice.port}
+  licensingservice:
+    hostname: 192.168.1.7
+    port: 9191
+    uri: http://${service.licensingservice.hostname}:${service.licensingservice.port}
+  zuulserver:
+    hostname: 192.168.1.7
+    port: 9194
+    uri: http://${service.zuulserver.hostname}:${service.zuulserver.port}
+  specialrouteservice:
+    hostname: 192.168.1.7
+    port: 9195
+    uri: http://${service.specialrouteservice.hostname}:${service.specialrouteservice.port}
+  organizationservice:
+    hostname: 192.168.1.7
+    port: 9193
+    uri: http://${service.organizationservice.hostname}:${service.organizationservice.port}
+  eurekaserver:
+    hostname: 192.168.1.7
+    port: 9192
+    uri: http://${service.eurekaserver.hostname}:${service.eurekaserver.port}/eureka
+  hsqldb:
+    path: jdbc:hsqldb:file:f:\data\learncloud
+  kafka:
+    brokers: 192.168.1.7
+  oauth2:
+    userInfoUri: ${service.zuulserver.uri}/authenticationservice/user
+  zipkinserver:
+    uri: http://192.168.1.7:9411/

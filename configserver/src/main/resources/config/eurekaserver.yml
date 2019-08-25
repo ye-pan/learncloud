@@ -1,0 +1,18 @@
+server:
+  port: ${service.eurekaserver.port}
+
+eureka:
+  instance:
+    hostname: ${service.eurekaserver.hostname}
+  #server:wait-time-in-ms-when-sync-empty: 5
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: ${service.eurekaserver.uri}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

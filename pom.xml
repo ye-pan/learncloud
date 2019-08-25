@@ -12,6 +12,7 @@
         <module>commons-lib</module>
         <module>specialrouteservice</module>
         <module>authenticationservice</module>
+        <module>zipkinserver</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
